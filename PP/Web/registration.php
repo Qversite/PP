@@ -7,7 +7,7 @@ if(isset($_SESSION['user_id'])){
 
 <?php
 include('../Bd/pdo.php');
-include('../Bd/module_global.php');
+include('../Bd/brain.php');
 
 if (isset($_POST['register'])) {
     if ($_POST['captcha'] !== $_SESSION['captcha_result']) {

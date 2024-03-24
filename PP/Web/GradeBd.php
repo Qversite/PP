@@ -1,6 +1,6 @@
 <?php
 include('../Bd/pdo.php');
-include('../Bd/module_global.php');
+include('../Bd/brain.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $jsonData = json_decode($_POST['jsonData'], true);

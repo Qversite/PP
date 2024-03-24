@@ -36,7 +36,7 @@ exit;
     </div>
     <?php
     include('../Bd/pdo.php');
-    include('../Bd/module_global.php');
+    include('../Bd/brain.php');
     if (isset($_POST['login'])) {
         $error = null;
         $username = $_POST['username'];

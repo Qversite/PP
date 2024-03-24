@@ -6,7 +6,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     exit;
 } else {
     include('../Bd/pdo.php');
-    include('../Bd/module_global.php');
+    include('../Bd/brain.php');
     $role = checkRoleUser($_SESSION['user_id']);
     $_SESSION['role'] = $role;
 }
@@ -24,13 +24,14 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
 <body>
 <div class="main-design container">
     <div class="left-part" id="left_part">
-        <div class="logo"><img src="../data/Group.svg" alt=""></div>
+    <a href="Main.php"><div class="logo"><img src="../img/Group.svg" alt=""></div></a>
         <div class="main_menu">
             <!-- <a href="Main.php"><div><img src="../data/Домашняя.svg" alt="">Главная</div></a> -->
-            <a href="Group.php"><div><img src="../data/Группы.svg" alt="">Группы</div></a>
-            <a href="Tables.php"><div><img src="../data/Журнал.svg" alt="">Журналы</div></a>
-            <a href="Profile.php"><div><img src="../data/Настройки.svg" alt="">Настройки</div></a>
-            <a href="?logout=1" class="logout"><div><img src="../data/Выйти.svg" alt="">Выйти</div></a>
+            <a href="Main.php"><div><img src="../img/Главная.svg" alt="">Главная</div></a>
+            <a href="Group.php"><div><img src="../img/Группы.svg" alt="">Группы</div></a>
+            <a href="Tables.php"><div><img src="../img/Журнал.svg" alt="">Журналы</div></a>
+            <a href="Profile.php"><div><img src="../img/Настройки.svg" alt="">Настройки</div></a>
+            <a href="?logout=1" class="logout"><div><img src="../img/Выйти.svg" alt="">Выйти</div></a>
         </div>
     </div>
     <div class="right-part" id="right_part">
@@ -41,7 +42,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
             ?>
             <span>Список групп</span>
             <div class="logUserInformation">
-                <img src="../data/user_img.png" alt="" width="40">
+                <img src="../img/user_img.png" alt="" width="40">
                 <label><?php echo $info['lastname'].'. '.mb_substr($info['name'], 0, 1).'. '.mb_substr($info['surname'], 0, 1)?> </label>
             </div>
         </div>
@@ -73,7 +74,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
         </div>
 
     <div id="addGroupBlock" class="add-block">
-        <form action="postFunction.php" method="post" class="form-add">
+        <form action="functions.php" method="post" class="form-add">
             <div class="form-group">
                 <label for="groupName">Название группы:</label>
                 <input type="text" id="groupName" name="group_name" required>
@@ -86,7 +87,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     </div>
     <!-- Добавление студентов -->
     <div id="addStudentBlock">
-        <form action="postFunction.php" method="post" class="form-add">
+        <form action="functions.php" method="post" class="form-add">
             <div class="form-group">
                 <label for="firstName">Имя:</label>
                 <input type="text" id="firstName" name="name" required>
@@ -136,7 +137,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
 
     function deleteStudent(studentId) {
         // Отправьте POST-запрос на сервер с использованием fetch или другого метода
-        fetch('postFunction.php', {
+        fetch('functions.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -152,7 +153,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
                 console.error('Ошибка:', error);
             });
         setTimeout(function() {
-            window.location.href = 'postFunction.php';
+            window.location.href = 'functions.php';
         }, 500);
     }
 <?php
@@ -214,7 +215,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     function toggleDeleteGroup(){
         var confirmDelete = confirm('Точно ли вы хотите удалить группу' + ' ' + group + '?');
         if (confirmDelete) {
-            fetch('postFunction.php', {
+            fetch('functions.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -222,7 +223,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
                 body: 'group=' + group,
             });
             setTimeout(function() {
-                window.location.href = 'postFunction.php';
+                window.location.href = 'functions.php';
             }, 500);
         }
     }

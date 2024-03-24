@@ -6,7 +6,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     exit;
 } else {
     include('../Bd/pdo.php');
-    include('../Bd/module_global.php');
+    include('../Bd/brain.php');
 $role = $_SESSION['role'];
 }
 ?>
@@ -23,14 +23,15 @@ $role = $_SESSION['role'];
 <body>
 <div class="main-design container" id="mainDesign">
     <div class="left-part">
-        <div class="logo"><img src="../data/Group.svg" alt=""></div>
+    <a href="Main.php"><div class="logo"><img src="../img/Group.svg" alt=""></div></a>
         <div class="main_menu">
-            <!-- <a href="Main.php"><div><img src="../data/Домашняя.svg" alt="">Главная</div></a> -->
-            <a href="Group.php"><div><img src="../data/Группы.svg" alt="">Группы</div></a>
-            <a href="Tables.php"><div><img src="../data/Журнал.svg" alt="">Журналы</div></a>
-            <a href="Profile.php"><div><img src="../data/Настройки.svg" alt="">Настройки</div></a>
+            <!-- <a href="Main.php"><div><img src="../img/Домашняя.svg" alt="">Главная</div></a> -->
+            <a href="Main.php"><div><img src="../img/Главная.svg" alt="">Главная</div></a>
+            <a href="Group.php"><div><img src="../img/Группы.svg" alt="">Группы</div></a>
+            <a href="Tables.php"><div><img src="../img/Журнал.svg" alt="">Журналы</div></a>
+            <a href="Profile.php"><div><img src="../img/Настройки.svg" alt="">Настройки</div></a>
 
-            <a href="?logout=1" class="logout"><div><img src="../data/Выйти.svg" alt="">Выйти</div></a>
+            <a href="?logout=1" class="logout"><div><img src="../img/Выйти.svg" alt="">Выйти</div></a>
         </div>
     </div>
     <div class="right-part">
@@ -41,7 +42,7 @@ $role = $_SESSION['role'];
             ?>
             <span>Журналы</span>
             <div class="logUserInformation">
-                <img src="../data/user_img.png" alt="" width="40">
+                <img src="../img/user_img.png" alt="" width="40">
                 <label><?php echo $info['lastname'].'. '.mb_substr($info['name'], 0, 1).'. '.mb_substr($info['surname'], 0, 1)?> </label>
             </div>
         </div>
@@ -71,7 +72,7 @@ $role = $_SESSION['role'];
 
 <!-- Добавление дисциплины -->
 <div id="addStudentBlock">
-    <form action="postFunction.php" method="post" class="form-add">
+    <form action="functions.php" method="post" class="form-add">
         <div class="form-group">
             <label for="firstName">Название:</label>
             <input type="text" id="firstName" name="name" required>

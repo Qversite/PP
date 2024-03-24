@@ -7,7 +7,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     exit;
 } else {
     include('../Bd/pdo.php');
-    include('../Bd/module_global.php');
+    include('../Bd/brain.php');
     $role = checkRoleUser($_SESSION['user_id']);
     $_SESSION['role'] = $role;
     $info = getUserInfoById($_SESSION['user_id']);
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container profile-container">
-        <img class="profile-image" src="../data/user_img.png" alt="Profile Image">
+        <img class="profile-image" src="../img/user_img.png" alt="Profile Image">
         <div class="profile-info">
             <h2><?php echo $info['name'].' '.$info['surname']; ?></h2>
             <?php if(isset($_SESSION['error_message'])): ?>

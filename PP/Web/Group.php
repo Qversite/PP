@@ -22,6 +22,19 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     <title>Главная</title>
 </head>
 <body>
+<style>
+           .main_podval{
+            display: flex;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    margin: 350px 48px;
+    fill: white;
+    width: 50px;
+    padding: 5 10px;
+}
+
+    </style>
 <div class="main-design container">
     <div class="left-part" id="left_part">
     <a href="Main.php"><div class="logo"><img src="../img/Group.svg" alt=""></div></a>
@@ -30,9 +43,9 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
             <a href="Main.php"><div><img src="../img/Главная.svg" alt="">Главная</div></a>
             <a href="Group.php"><div><img src="../img/Группы.svg" alt="">Группы</div></a>
             <a href="Tables.php"><div><img src="../img/Журнал.svg" alt="">Журналы</div></a>
-            <a href="Profile.php"><div><img src="../img/Настройки.svg" alt="">Настройки</div></a>
-            <a href="?logout=1" class="logout"><div><img src="../img/Выйти.svg" alt="">Выйти</div></a>
-        </div>
+            <a href="Profile.php"><div><img src="../img/Настройки.svg" alt="">Профиль</div></a></div>
+            <a href="?logout=1" class="logout"><div class="main_podval"><img src="../img/Выйти.svg" alt="">Выйти</div></a>
+        
     </div>
     <div class="right-part" id="right_part">
         <div class="part_header">

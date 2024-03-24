@@ -20,12 +20,10 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     <link rel="stylesheet" href="../css/Style.css">
     <title>Главная</title>
 </head>
-
-
 <body>
     <style>
-           .main_podval{
-            display: flex;
+    .main_podval{
+    display: flex;
     align-items: center;
     color: white;
     font-size: 24px;
@@ -33,10 +31,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     fill: white;
     width: 50px;
     padding: 5 10px;
-    
-}
-
-
+    }
     </style>
     <div class="main-design container">
         <div class="left-part">
@@ -49,12 +44,10 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
             <a href="Profile.php"><div><img src="../img/Настройки.svg" alt="">Профиль</div></a> </div>   
             <a href="?logout=1" class="logout"><div class="main_podval"><img src="../img/Выйти.svg" alt="">Выйти</div></a>
         
-        
         </div>
         <div class="right-part">
             <div class="part_header">
                 <span>Электронный журнал</span>
-                
                 <?php
                 $info = getUserInfoById($_SESSION['user_id']);
                 ?>
@@ -62,11 +55,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
                     <img src="../img/user_img.png" alt="" width="40">
                     <label><?php echo $info['lastname'].'. '.mb_substr($info['name'], 0, 1).'. '.mb_substr($info['surname'], 0, 1)?> </label>
                 </div>
-                
             </div>
-           
-           
-           
             <div class="part_bottom">
                 <div class="bottom_div">
 

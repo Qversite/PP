@@ -72,38 +72,48 @@ $role = $_SESSION['role'];
             <?php for ($day = 1; $day <= 31; $day++): ?>
                 <th><?= $day ?></th>
             <?php endfor; ?>
+            <th>Средний бал</th> 
         </tr>
         </thead>
         <tbody>
+            
         <?php
-        foreach ($data as $name) {
-            echo '<tr> <td>'.$name['lastname'].'</td>';
-            $gradeData = getGradesByStudentIdAndSubjectId($name['id'], $subjectId);
-            for ($day = 1; $day <= 31; $day++) {
-                $found = false;
-                foreach ($gradeData as $grade) {
-                    if ($grade['lesson_num'] == $day) {
-                        if($role){
-                        echo '<td contenteditable="true" class="editable-cell" data-original-value="" oninput="limitInput(this, 1)">' . $grade['grade'] . '</td>';
-                        } else {
-                        echo '<td data-original-value="">' . $grade['grade'] . '</td>';
-                        }
-                        $found = true;
-                        break;
-                    }
-                }
-
-                if (!$found) {
+       foreach ($data as $name) {
+        echo '<tr> <td>'.$name['lastname'].'</td>';
+        $gradeData = getGradesByStudentIdAndSubjectId($name['id'], $subjectId);
+        $totalGrades = 0;
+        $numGrades = 0;
+        for ($day = 1; $day <= 31; $day++) {
+            $found = false;
+            foreach ($gradeData as $grade) {
+                if ($grade['lesson_num'] == $day) {
                     if($role){
-                        echo '<td contenteditable="true" class="editable-cell" data-original-value="" oninput="limitInput(this)"></td>';
+                        echo '<td contenteditable="true" class="editable-cell" data-original-value="" oninput="limitInput(this, 1)">' . $grade['grade'] . '</td>';
                     } else {
-                        echo '<td data-original-value=""></td>';
+                        echo '<td data-original-value="">' . $grade['grade'] . '</td>';
                     }
+                    $totalGrades += intval($grade['grade']);
+                    $numGrades++;
+                    $found = true;
+                    break;
                 }
             }
-            echo '</tr>';
+    
+            if (!$found) {
+                if($role){
+                    echo '<td contenteditable="true" class="editable-cell" data-original-value="" oninput="limitInput(this)"></td>';
+                } else {
+                    echo '<td data-original-value=""></td>';
+                }
+            }
         }
+    
+        $averageGrade = $numGrades > 0 ? round($totalGrades / $numGrades, 2) : 0;
+        echo '<td>'.$averageGrade.'</td>';
+        echo '</tr>';
+    }
         ?>
+        
         </tbody>
     </table>
 </form>
@@ -111,7 +121,7 @@ $role = $_SESSION['role'];
 </div>
 <script>
     function limitInput(element) {
-        var allowedCharactersRegex = /[2345НУ]/g;
+        var allowedCharactersRegex = /[2345НнуУ]/g;
 
         var sanitizedText = element.textContent.match(allowedCharactersRegex);
 

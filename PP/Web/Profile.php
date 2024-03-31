@@ -51,7 +51,7 @@ if (!isset($_SESSION['user_id']) || isset($_GET['logout'])) {
 
             $stmt = $pdo->prepare('UPDATE users SET name = :name, surname = :surname, lastname = :lastname WHERE id = :user_id');
             $stmt->execute(['name' => $name, 'surname' => $surname, 'lastname' => $lastname, 'user_id' => $_SESSION['user_id']]);
-
+            
             $_SESSION['success_message'] = 'Информация о пользователе успешно обновлена';
             header('Location: profile.php');
             exit;
@@ -125,19 +125,33 @@ if (!isset($_SESSION['user_id']) || isset($_GET['logout'])) {
     a:hover {
         color: blue;
     }
+    .close {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
 </style>
 
     </style>
 <body>
-    <div class="container profile-container">
+    
+<div class="container profile-container">
         <img class="profile-image" src="../img/user_img.png" alt="Profile Image">
         <div class="profile-info">
             <h2><?php echo $info['name'] . ' ' . $info['surname']; ?></h2>
             <?php if (isset($_SESSION['error_message'])): ?>
-                <div class="alert alert-danger"><?php echo $_SESSION['error_message']; ?></div>
+                <div class="alert alert-danger">
+                    <?php echo $_SESSION['error_message']; ?>
+                    <span class="close">&times;</span>
+                </div>
             <?php endif; ?>
             <?php if (isset($_SESSION['success_message'])): ?>
-                <div class="alert alert-success"><?php echo $_SESSION['success_message']; ?></div>
+                <div class="alert alert-success" id="successAlert">
+                    <?php echo $_SESSION['success_message']; ?>
+                    <span class="close">&times;</span>
+                </div>
             <?php endif; ?>
             <form method="post" action="profile.php">
                 <div class="form-group">
@@ -174,7 +188,15 @@ if (!isset($_SESSION['user_id']) || isset($_GET['logout'])) {
         <a href="main.php"><div>Вернуться</div></a>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.alert .close').click(function() {
+                $(this).closest('.alert').hide();
+            });
+        });
+    </script>
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 

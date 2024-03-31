@@ -70,7 +70,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
                     echo "<div class=details_list>";
                 $studentData = getAllStudentByGroup($group['name']);
                 foreach ($studentData as $student){
-                    echo "<li class='delete-student' title='Нажмите, для удаления' data-student-id=".$student['id'].">".$student['lastname']." ".$student['name']." ".$student['surname']."</li>";
+                    echo "<li class='delete-student' title='Удалить' data-student-id=".$student['id'].">".$student['lastname']." ".$student['name']." ".$student['surname']."</li>";
                 }
                     if($role) {
                         echo "<a onclick='toggleAddStudentBlock()' class='add_things'>Добавить студента</a>";
@@ -141,7 +141,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
     function confirmDeleteStudent(link) {
         var studentId = link.dataset.studentId;
 
-        var confirmDelete = confirm('Точно ли вы хотите удалить студента? ');
+        var confirmDelete = confirm('Вы уверены, что хотите удалить студента? ');
         if (confirmDelete) {
             deleteStudent(studentId);
         } else {
@@ -226,7 +226,7 @@ if(!isset($_SESSION['user_id']) || isset($_GET['logout'])){
         addGroupBlock.style.display = (addGroupBlock.style.display === "block") ? "none" : "block";
     }
     function toggleDeleteGroup(){
-        var confirmDelete = confirm('Точно ли вы хотите удалить группу' + ' ' + group + '?');
+        var confirmDelete = confirm('Вы уверены, что хотите удалить группу?' + ' ' + group + '?');
         if (confirmDelete) {
             fetch('functions.php', {
                 method: 'POST',

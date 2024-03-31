@@ -19,7 +19,9 @@ $role = $_SESSION['role'];
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/Style.css">
     <title>Таблицы</title>
-</head><style>
+</head>
+<body>
+<style>
            .main_podval{
             display: flex;
     align-items: center;
@@ -32,8 +34,6 @@ $role = $_SESSION['role'];
 }
 
     </style>
-<body>
-
 <div class="main-design container" id="mainDesign">
     <div class="left-part">
     <a href="Main.php"><div class="logo"><img src="../img/Group.svg" alt=""></div></a>
@@ -44,7 +44,7 @@ $role = $_SESSION['role'];
             <a href="Tables.php"><div><img src="../img/Журнал.svg" alt="">Журналы</div></a>
             <a href="Profile.php"><div><img src="../img/Настройки.svg" alt="">Профиль</div></a>  </div>
             <a href="?logout=1" class="logout"><div class="main_podval"><img src="../img/Выйти.svg" alt="">Выйти</div></a>
-      
+    
     </div>
     <div class="right-part">
         <div class="part_header">

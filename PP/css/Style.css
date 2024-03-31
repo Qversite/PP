@@ -7,7 +7,7 @@ body{
 }
 
 a{
-    color: rgb(151 151 151);
+    color: rgb(255 0 0);
     text-decoration: none;
     transition: color 0.5s;
 }
@@ -248,7 +248,7 @@ a:hover{
     transition: color 0.5s ease;
 }
 .details_list li:hover{
-    color: #ffffff;
+    color: #ff0000;
 }
 .add_things{
     margin-top: 15px;

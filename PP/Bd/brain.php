@@ -11,7 +11,6 @@ function getUserInfoById($id){
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
-
 function checkRepeat($studentId, $subjectId, $key){
     global $connection;
     $query = $connection->prepare("SELECT id FROM grade WHERE subject_id = :subjectId AND student_id = :studentId AND lesson_num = :lesson_num");
@@ -25,7 +24,6 @@ function checkRepeat($studentId, $subjectId, $key){
         return true;
     }
 }
-
 function getIdRepeat($studentId, $subjectId, $key){
     global $connection;
     $query = $connection->prepare("SELECT id FROM grade WHERE subject_id = :subjectId AND student_id = :studentId AND lesson_num = :lesson_num");
@@ -35,8 +33,6 @@ function getIdRepeat($studentId, $subjectId, $key){
     $query->execute();
     return $query->fetchColumn();
 }
-
-
 function getIdSubject(string $subject)
 {
     global $connection; // Предполагается, что $connection - это глобальная переменная или передана как аргумент

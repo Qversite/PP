@@ -1,4 +1,5 @@
 <?php
+$pdo = new PDO('mysql:host=localhost;dbname=gradebook', 'Admin', '12345');
 define('USER', 'Admin');
 define('PASSWORD', '12345');
 define('HOST', 'localhost');
@@ -9,4 +10,6 @@ try {
     echo $e->getMessage();
     exit("Error: " . $e->getMessage());
 }
+$stmt = $connection->prepare("SELECT * FROM users");
+$stmt->execute();
 ?>
